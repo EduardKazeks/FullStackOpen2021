@@ -1,0 +1,8 @@
+note over selain:
+    redrawNotes() command create a notes,and server answer to browser,that you note has create,
+    and have answwer from server: {"message":"note created"}.
+end note
+
+
+selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+palvelin-->selain: {"message":"note created"}
