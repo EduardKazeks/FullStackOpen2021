@@ -1,7 +1,7 @@
 const Part = (props) => {
   return (
   <p>
-  {props.part.name} {props.part.exercises}
+  {props.part.name}  {props.part.exercises}
 </p>
   )
 }
@@ -14,6 +14,17 @@ const courseName = 'Half Stack application development'
    )
  }
 
+ const  content = [
+  {
+    name: 'Fundamentals of React', exercises: 10
+  },
+  {
+    name: 'Using props to pass data', exercises: 7
+  },
+  {
+    name: 'State of a component', exercises: 14
+  }
+]
  const Total = ({content}) => {
   return (
     <p>Number of exercises: '{content[0].exercises + content[1].exercises + content[2].exercises}'</p>
@@ -21,18 +32,6 @@ const courseName = 'Half Stack application development'
 };
 
 const App = () => {
-  
-  const content = [
-    {
-      name: 'Fundamentals of React', exercises: 10
-    },
-    {
-      name: 'Using props to pass data', exercises: 7
-    },
-    {
-      name: 'State of a component', exercises: 14
-    }
-  ]
 
   const Content = (props) => {
     return (
