@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import personsService from './persons/persons'
+import personsService from './services/persons'
 import SuccessNotification from './persons/SuccessNotification'
 import ErrorNotification from './persons/ErrorNotification'
 
@@ -84,10 +84,8 @@ const App = () => {
   }
 
   useEffect(hook, [])
-  const ErrorSetTimeOut = (person) => {
-    setErrorMessage(
-      ` Information of ${person.name} has already beed removed from server `
-    )
+  const ErrorSetTimeOut = (message) => {
+    setErrorMessage(message)
     setTimeout(() => {
       setErrorMessage(null)
     }, 5000)
@@ -137,7 +135,10 @@ const App = () => {
         }, 5000)
       })
       .catch(error => {
-        ErrorSetTimeOut(newPerson)
+        if( error.response ) {
+          ErrorSetTimeOut(error.response.data.error)
+          console.warn(error.response.data.error); // => the response payload 
+        }
       })
   }
 
@@ -149,7 +150,7 @@ const App = () => {
         setPersons(persons.filter((p) => p.id !== person.id));
       })
         .catch(error => {
-          ErrorSetTimeOut(person)
+          ErrorSetTimeOut('Information of' + person.name + 'has already been removed from server')
         });
     }
   };
